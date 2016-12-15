@@ -73,6 +73,7 @@ int main()
         }
         printMessage(CONTINUE_MESSAGE);
         continueGame = yesNo();
+        system("CLS");
     }
     while(continueGame=='y');
     return 1;
