@@ -134,6 +134,7 @@ void printTeam(vector<Tank> &tankArray, const int &valor)
 
 void initializeTanks(vector<Tank> &tankArray)
 {
+    tankArray.clear();
     for(int i=0;i<STARTING_TANKS;i++)
     {
         tankArray.push_back(Tank());
