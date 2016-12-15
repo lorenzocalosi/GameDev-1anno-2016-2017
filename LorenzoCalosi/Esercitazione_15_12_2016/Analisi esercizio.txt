@@ -1,0 +1,45 @@
+Analisi Esercizio
+
+Classi:
+
+Tiger
+{
+	Attributi:
+	 Salute (INT)
+	 Carburante (INT)
+	 Munizioni (INT)
+	 String nome
+	Funzioni:
+	 Costruttore()
+	 void Pattugliamento(int distance)
+	 void Attacco(int strength)
+	 void Rifornimento e riparazione(int strength)
+	 bool ControlloVita()
+	 metodi get
+}
+
+Funzioni:
+
+void selectMission
+char yesNo
+void printMessage(message)
+char gameover
+
+Variabili:
+vector<Tiger> tigerarray
+char victoryCondition
+
+
+Struttura gioco
+
+	Creazione Carrarmati
+	Do
+	{
+		Scegli missione
+		Applica conseguenze
+		controlla perdite
+		aumenta valore
+	}
+	Finchè ci sono carrarmati e il valore è minore di 100
+	controlla vittoria o sconfitta
+	stampa messaggio appropriato
