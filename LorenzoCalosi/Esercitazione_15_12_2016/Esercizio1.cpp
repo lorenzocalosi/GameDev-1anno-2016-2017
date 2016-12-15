@@ -233,5 +233,5 @@ void Tank::PrintSituation()
 
 bool Tank::isAlive()
 {
-    return (_health>0)? true : false;
+    return (_health>0||_ammo>0||_fuel>0)? true : false;
 }
