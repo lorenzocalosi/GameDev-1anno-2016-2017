@@ -1,0 +1,55 @@
+
+Inizializza Valori
+Fai:
+ Scelta utente
+  Chase:
+   Se dracula è stato trovato: 
+    Dracula fight
+    Se Belmont vince:
+     GAME END WIN
+    Se Belmont perde:
+     GAME END LOSE
+   Se dracula non è stato trovato:
+    Normal fight
+    Se Belmont vince:
+     Probabilità di incontrare dracula aumentata
+    Se Belmont perde:
+     GAME END LOSE
+ Riposo:
+  Se Belmont riesce a riposare:
+   Stats up
+  Se Belmont non riposa:
+   Normal fight
+   Se Belmont vince:
+    Non hai perso!
+   Se Belmont perde:
+    GAME END LOSE
+Finchè NON GAME END
+Se GAME END WIN: 
+ Stampa messaggio vittoria
+SE GAME END LOSE:
+ Stampa messaggio sconfitta
+
+Fight:
+ Se Dracula Fight:
+  Enemy = Dracula
+ Altrimenti:
+  Random enemy;
+  Se è sevitore:
+   Enemy = 3 Servitori
+  Se è spettro:
+   Enemy = 3 Spettri
+ Fai:
+  Choice:
+   Attacca
+   Intimida
+  Genera attacco nemici
+  Risoluzione:
+   Risolvi attacchi nemici su giocatore
+   Risolvi attacchi giocatore su nemici
+  Il giocatore è morto:
+   PLAYER LOSE
+  Il nemico è morto:
+   ENEMY LOSE
+ Finchè ENEMY LOSE o PLAYER LOSE
+ Ritorna LOSER
