@@ -99,6 +99,10 @@ void Entity::printStats(const int index) const
     {
         cout << _name << " " << index << endl;
     }
+    else
+    {
+        cout << _name << endl;
+    }
     cout << "Health: " << _health << endl;
     cout << "Will: " << _will << endl;
     cout << endl;
@@ -122,9 +126,11 @@ void rest(Entity &belmont)
     }
     else
     {
+        int randomValue = rand()%6+5;
         cout << "You spend a bit of time loitering." << endl;
-        int healingValue = rand()%6+5;
-        belmont.takeDamage('h', -healingValue);
+        belmont.takeDamage('h', -randomValue);
+        randomValue = rand()%6+5;
+        belmont.takeDamage('w', -randomValue);
     }
     return;
 }
@@ -149,7 +155,7 @@ void attack(const char &attackType, Entity &attacker, Entity &target)
 
 bool battle(Entity &belmont, const int &draculaChance)
 {
-    int isDracula = rand()%9;
+    int isDracula = rand()%9+1;
     bool draculaAppear = false;
     int selection;
     int monsterChoice;
@@ -157,7 +163,7 @@ bool battle(Entity &belmont, const int &draculaChance)
     char attackType;
     vector<Entity> enemies;
     bool battleContinues = true;
-    if(isDracula < draculaChance)
+    if(isDracula <= draculaChance)
     {
         cout << "IT'S DRACULA!!!" << endl;
         enemies.push_back(Entity("Dracula"));
@@ -199,7 +205,7 @@ bool battle(Entity &belmont, const int &draculaChance)
             }
             else
             {
-                cout << endl << "** ENEMY SLAIN **" << endl;
+                cout << "** ENEMY SLAIN **" << endl;
             }
         }
         cout << endl << "What will you do?\n1.Attack them with your whip.\n2.Taunt them!\nYour selection:";
@@ -256,7 +262,7 @@ bool hunt(Entity &belmont, int &draculaChance)
     system("CLS");
     cout << "You keep looking for Dracula, and an enemy appears!" << endl;
     bool draculaAppear = battle(belmont, draculaChance);
-    if(!draculaAppear&&belmont.isAlive())
+    if(!draculaAppear)
     {
         draculaChance++;
     }
@@ -268,7 +274,7 @@ int main()
     Entity belmont("Belmont");
     int draculaChance = 0;
     int selection;
-    bool continueGame;
+    bool continueGame = true;
     bool victory;
     srand (time(NULL));
     cout << "You are the legendary vampire hunter Simon Belmont! Your hunt for the evil Lord Dracula is on!\n";
@@ -282,19 +288,19 @@ int main()
         {
             case 1:
                 continueGame = !hunt(belmont, draculaChance);
-                if(belmont.isAlive())
-                {
-                    cout << "You survive this ordeal!" << endl;
-                }
-                else
-                {
-                    continueGame = false;
-                    cout << "The opponent overwhelms you!" << endl;
-                }
                 break;
             case 2:
                 rest(belmont);
                 break;
+        }
+        if(belmont.isAlive())
+        {
+            cout << "You survive this ordeal!" << endl;
+        }
+        if(!belmont.isAlive())
+        {
+            continueGame = false;
+            cout << "The opponent overwhelms you!" << endl;
         }
     }
     while(continueGame);
