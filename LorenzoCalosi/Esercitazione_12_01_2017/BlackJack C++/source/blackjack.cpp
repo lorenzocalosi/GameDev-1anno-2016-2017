@@ -7,5 +7,5 @@ using namespace std;
 
 int main()
 {
-
+    srand(unsigned(std::time(0)));
 }

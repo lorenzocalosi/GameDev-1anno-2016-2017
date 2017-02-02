@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="BlackJack C++" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\BlackJack C++" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\BlackJack C++" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++98" />
+			<Add option="-Wall" />
+			<Add option="-pedantic" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="headers\Card.hpp" />
+		<Unit filename="headers\Deck.hpp" />
+		<Unit filename="headers\Game.hpp" />
+		<Unit filename="headers\GenericPlayer.hpp" />
+		<Unit filename="headers\Hand.hpp" />
+		<Unit filename="headers\House.hpp" />
+		<Unit filename="headers\Player.hpp" />
+		<Unit filename="source\Card.cpp" />
+		<Unit filename="source\Deck.cpp" />
+		<Unit filename="source\Game.cpp" />
+		<Unit filename="source\GenericPlayer.cpp" />
+		<Unit filename="source\Hand.cpp" />
+		<Unit filename="source\House.cpp" />
+		<Unit filename="source\Player.cpp" />
+		<Unit filename="source\blackjack.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

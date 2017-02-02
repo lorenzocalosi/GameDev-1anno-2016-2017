@@ -1,11 +1,11 @@
-#include "Hand.h"
+#include "Hand.hpp"
 
 Hand::Hand()
 {
 
 }
 
-void Hand::Add(const Card &card)
+void Hand::add(const Card &card)
 {
     _cards.push_back(card);
 }

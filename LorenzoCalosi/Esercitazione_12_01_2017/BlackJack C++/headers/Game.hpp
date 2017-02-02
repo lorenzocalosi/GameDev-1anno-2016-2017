@@ -1,6 +1,6 @@
-#include "Deck.h"
-#include "House.h"
-#include "Player.h"
+#include "Deck.hpp"
+#include "House.hpp"
+#include "Player.hpp"
 #include <vector>
 
 class Game
@@ -11,5 +11,7 @@ class Game
         vector<Player> _players;
     public:
         Game();
-        void play();
+        Game(vector<string> playerNames);
+        ~Game();
+        void playRound();
 };

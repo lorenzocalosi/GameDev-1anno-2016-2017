@@ -1,6 +1,7 @@
-#include "GenericPlayer.h"
+#include "GenericPlayer.hpp"
 #include <iostream>
 
+//TODO: Change this into two costructors, one with a string variable, one empty.
 GenericPlayer::GenericPlayer()
 {
     cout << "Insert this player's name:" << endl;
@@ -9,11 +10,7 @@ GenericPlayer::GenericPlayer()
 
 bool isBusted() const
 {
-    if(this->getTotal() > 21)
-    {
-        return true;
-    }
-    return false;
+    return (this->getTotal() > 21);
 }
 
 void bust() const
