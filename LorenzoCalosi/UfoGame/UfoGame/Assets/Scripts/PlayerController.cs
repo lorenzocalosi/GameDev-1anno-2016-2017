@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 
 	private Rigidbody2D rb2d;
 	private int count;
+	private bool playerDead = false;
 
 	// Use this for initialization
 	void Start()
@@ -34,9 +35,13 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) 
 	{
 		if (other.gameObject.CompareTag ("PickUp")) {
-			other.gameObject.SetActive(false);
+			other.gameObject.SetActive (false);
 			count = count + 1;
 			SetCountText ();
+		} else if (other.gameObject.CompareTag ("Enemy")) {
+			playerDead = true;
+			SetCountText ();
+			this.gameObject.SetActive (false);
 		}
 		
 
@@ -47,6 +52,9 @@ public class PlayerController : MonoBehaviour {
 		countText.text = "Count: " + count.ToString ();
 		if (count >= maxCount) {
 			winText.text = "You win!";
+		}
+		if (playerDead) {
+			winText.text = "You lose!";
 		}
 	}
 }
