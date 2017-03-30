@@ -4,7 +4,12 @@ public class PlayerShooting : MonoBehaviour
 {
     public int damagePerShot = 20;
     public float timeBetweenBullets = 0.15f;
+	public float timeBetweenGrenades = 1.0f;
+	public int startingGrenades = 3;
+	public int currentGrenades = 0;
+	public float grenadeForce = 5.0f;
     public float range = 100f;
+	public GameObject grenade;
 
 
     float timer;
@@ -20,6 +25,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Awake ()
     {
+		currentGrenades = startingGrenades;
         shootableMask = LayerMask.GetMask ("Shootable");
         gunParticles = GetComponent<ParticleSystem> ();
         gunLine = GetComponent <LineRenderer> ();
@@ -36,6 +42,10 @@ public class PlayerShooting : MonoBehaviour
         {
             Shoot ();
         }
+
+		if (Input.GetButton ("Fire2") && timer >= timeBetweenGrenades && currentGrenades > 0 && Time.timeScale != 0) {
+			GrenadeToss ();
+		}
 
         if(timer >= timeBetweenBullets * effectsDisplayTime)
         {
@@ -82,4 +92,11 @@ public class PlayerShooting : MonoBehaviour
             gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
         }
     }
+
+	void GrenadeToss()
+	{
+		Rigidbody grenade = Instantiate (grenade, transform.position, transform.rotation);
+		Vector3 direction = transform.TransformDirection (new Vector3(0,1,1) * grenadeForce);
+		grenade.AddForce (direction);
+	}
 }
