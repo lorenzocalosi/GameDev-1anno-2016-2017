@@ -29,10 +29,13 @@ public class PlayerMovement : MonoBehaviour
 
 	private void Move(float h, float v)
 	{
-		Vector3 forwardMovement = transform.forward * speed * Time.deltaTime * v;
+		Vector3 moveDirection = new Vector3 (speed * h, 0.0f, speed * v);
+		moveDirection = transform.TransformDirection (moveDirection) * Time.fixedDeltaTime;
+		//Vector3 forwardMovement = transform.forward * speed * Time.deltaTime * v;
+		//Vector3 sideMovement = transform.
 		//Vector3 movement = new Vector3 (h, 0.0f, v);
 		//movement = movement.normalized * speed * Time.deltaTime;
-		_rg.MovePosition (transform.position + forwardMovement);
+		_rg.MovePosition (transform.position + moveDirection);
 	}
 
 	private void Rotate()
