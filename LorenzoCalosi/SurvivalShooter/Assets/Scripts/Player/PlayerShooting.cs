@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -9,10 +10,12 @@ public class PlayerShooting : MonoBehaviour
 	public int currentGrenades = 0;
 	public float grenadeForce = 5.0f;
     public float range = 100f;
-	public GameObject grenade;
+	public Rigidbody grenadePrefab;
+	public Text grenadeText;
 
 
     float timer;
+	float grenadeTimer;
     Ray shootRay = new Ray();
     RaycastHit shootHit;
     int shootableMask;
@@ -26,6 +29,7 @@ public class PlayerShooting : MonoBehaviour
     void Awake ()
     {
 		currentGrenades = startingGrenades;
+		grenadeText.text = "Grenades: " + currentGrenades;
         shootableMask = LayerMask.GetMask ("Shootable");
         gunParticles = GetComponent<ParticleSystem> ();
         gunLine = GetComponent <LineRenderer> ();
@@ -37,13 +41,14 @@ public class PlayerShooting : MonoBehaviour
     void Update ()
     {
         timer += Time.deltaTime;
+		grenadeTimer += Time.deltaTime;
 
 		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
         {
             Shoot ();
         }
 
-		if (Input.GetButton ("Fire2") && timer >= timeBetweenGrenades && currentGrenades > 0 && Time.timeScale != 0) {
+		if (Input.GetButtonDown ("Fire2") && grenadeTimer >= timeBetweenGrenades && currentGrenades > 0 && Time.timeScale != 0) {
 			GrenadeToss ();
 		}
 
@@ -95,8 +100,11 @@ public class PlayerShooting : MonoBehaviour
 
 	void GrenadeToss()
 	{
-		Rigidbody grenade = Instantiate (grenade, transform.position, transform.rotation);
+		grenadeTimer = 0f;
+		currentGrenades--;
+		grenadeText.text = "Grenades: " + currentGrenades;
+		Rigidbody grenade = Instantiate (grenadePrefab, transform.position, transform.rotation);
 		Vector3 direction = transform.TransformDirection (new Vector3(0,1,1) * grenadeForce);
-		grenade.AddForce (direction);
+		grenade.AddForce (direction, ForceMode.Impulse);
 	}
 }
