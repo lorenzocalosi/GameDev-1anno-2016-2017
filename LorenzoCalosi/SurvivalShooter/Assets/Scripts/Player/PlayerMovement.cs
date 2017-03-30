@@ -23,15 +23,16 @@ public class PlayerMovement : MonoBehaviour
 		float v = Input.GetAxisRaw ("Vertical");
 
 		Move (h, v);
-		Rotate ();
+		//Rotate ();
 		Animating (h, v);
 	}
 
 	private void Move(float h, float v)
 	{
-		Vector3 movement = new Vector3 (h, 0.0f, v);
-		movement = movement.normalized * speed * Time.deltaTime;
-		_rg.MovePosition (transform.position + movement);
+		Vector3 forwardMovement = transform.forward * speed * Time.deltaTime * v;
+		//Vector3 movement = new Vector3 (h, 0.0f, v);
+		//movement = movement.normalized * speed * Time.deltaTime;
+		_rg.MovePosition (transform.position + forwardMovement);
 	}
 
 	private void Rotate()
